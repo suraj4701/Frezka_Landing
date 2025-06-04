@@ -1,0 +1,49 @@
+const { test, expect } = require('@playwright/test');
+const { TrustpilotVerify } = require('./common');
+
+test("Trustpilot link verify", async ({ page }) => {
+    await page.goto("https://frezka.iqonic.design/")
+    await page.waitForTimeout(2000)
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
+    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
+    await TrustpilotVerify(page, trustpilotLinkLocator);
+})
+
+test("Features", async ({ page }) => {
+    await page.goto("https://frezka.iqonic.design/")
+    await page.waitForTimeout(2000)
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
+    const pagelocator = page.locator("//a[contains(text(),'features')]");
+    await pagelocator.scrollIntoViewIfNeeded();
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        pagelocator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toContain("https://frezka.iqonic.design/feature/services-and-packages/");
+    const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
+    const verifytext = await iqonicDesignSpanLocator.textContent();
+    expect(verifytext).toContain('Take Full Control of Your Service');
+})
+
+test("Custom Development Work", async ({ page }) => {
+    await page.goto("https://frezka.iqonic.design/")
+    await page.waitForTimeout(2000)
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
+    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'custom development work')]");
+    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        envantofrezkaLinkLocator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toContain("https://service.iqonic.design/");
+    const iqonicDesignSpanLocator = newPage.locator("//p[contains(text(),'HIRE US')]");
+    const verifytext = await iqonicDesignSpanLocator.textContent();
+    expect(verifytext).toContain('HIRE US');
+})
