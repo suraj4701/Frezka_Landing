@@ -18,7 +18,7 @@ test("Appointment Envanto Frezka link verify", async ({ page }) => {
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and/");
+    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
     await EnvantoFrezkaVerify(page, trustpilotLinkLocator);
 })
