@@ -82,14 +82,14 @@ class CustomReporter {
 
     async sendReportEmail(overallStatus) {
         // --- Configuration for Email ---
-        const senderEmail ="suraj.goldenmace@gmail.com"; // Use environment variable or default
-        const senderPassword ="phdi mefy octi dohj"; // Use environment variable or default
-        const recipientEmails = "denishiqonic@gmail.com"; // Multiple recipients
+        const senderEmail = process.env.EMAIL_USER; // Use environment variable or default
+        const senderPassword = process.env.EMAIL_PASS; // Use environment variable or default
+        const recipientEmails = process.env.RECIPIENT_EMAILS; // Multiple recipients
 
         // Configure your SMTP transporter
         const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com", // e.g., 'smtp.office365.com'
-            port: 587, // 465 for SSL, 587 for TLS
+            host: process.env.SMTP_HOST, // e.g., 'smtp.office365.com'
+            port: parseInt(process.env.SMTP_PORT), // 465 for SSL, 587 for TLS
             secure: false, // Use true if port is 465 (SSL), false if 587 (TLS)
             auth: {
                 user: senderEmail,
