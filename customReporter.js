@@ -3,11 +3,9 @@ const nodemailer = require('nodemailer');
 class CustomReporter {
     constructor() {
         this.totalTests = 0;
-        this.passCount = 0;
-        this.failCount = 0;
-        this.flakyPassCount = 0;
+        this.testFinalStatuses = new Map();
+        this.testDetailsMap = new Map();
         this.failedTestDetails = [];
-        this.loggedFailedTestIds = new Set();
     }
 
     onBegin(config, suite) {
@@ -16,38 +14,31 @@ class CustomReporter {
     }
 
     onTestEnd(test, result) {
-        if (result.status === 'passed') {
-            this.passCount++;
-        } else if (result.status === 'failed') {
-            if (!this.loggedFailedTestIds.has(test.id)) {
-                this.failCount++;
-                this.loggedFailedTestIds.add(test.id);
-                console.log('\n========================================');
-                console.log(`❌ FAILED TEST: ${test.title}`);
-                console.log(`File: ${test.location.file}:${test.location.line}`);
+        this.testFinalStatuses.set(test.id, result.status);
+        let errorMessage = 'No specific error message found.';
+        if (result.errors && result.errors.length > 0) {
+            errorMessage = result.errors.map(error => this.stripAnsiCodes(error.message)).join('\n');
+        }
 
-                let errorMessage = 'No specific error message found.';
-                if (result.errors && result.errors.length > 0) {
+        this.testDetailsMap.set(test.id, {
+            name: test.title,
+            location: `${test.location.file}:${test.location.line}`,
+            latestError: errorMessage,
+        });
 
-                    errorMessage = result.errors.map(error => this.stripAnsiCodes(error.message)).join('\n');
-                    console.log('Error Details:');
-                    result.errors.forEach((error, index) => {
-                        console.log(`  ${index + 1}. Message: ${this.stripAnsiCodes(error.message)}`);
-                    });
-                } else {
-                    console.log(errorMessage);
-                }
-
-                this.failedTestDetails.push({
-                    name: test.title,
-                    location: `${test.location.file}:${test.location.line}`,
-                    errorMessage: errorMessage,
+        if (result.status === 'failed' || result.status === 'timedOut') {
+            console.log('\n========================================');
+            console.log(`❌ FAILED TEST ATTEMPT: ${test.title}`);
+            console.log(`File: ${test.location.file}:${test.location.line}`);
+            if (result.errors && result.errors.length > 0) {
+                console.log('Error Details:');
+                result.errors.forEach((error, index) => {
+                    console.log(`   ${index + 1}. Message: ${this.stripAnsiCodes(error.message)}`);
                 });
-
-                console.log('========================================\n');
+            } else {
+                console.log(errorMessage);
             }
-        } else if (result.status === 'flaky') {
-            this.flakyPassCount++;
+            console.log('========================================\n');
         }
     }
 
@@ -56,19 +47,42 @@ class CustomReporter {
     }
 
     async onEnd(result) {
+        let finalPassCount = 0;
+        let finalFailCount = 0;
+        const uniqueFailedTests = new Map();
+
+        this.testFinalStatuses.forEach((status, testId) => {
+            if (status === 'passed') {
+                finalPassCount++;
+            } else if (status === 'failed' || status === 'timedOut') {
+                finalFailCount++;
+                if (!uniqueFailedTests.has(testId)) {
+                    const testDetails = this.testDetailsMap.get(testId);
+                    if (testDetails) {
+                        uniqueFailedTests.set(testId, {
+                            name: testDetails.name,
+                            location: testDetails.location,
+                            errorMessage: testDetails.latestError,
+                        });
+                    }
+                }
+            }
+        });
+
+        this.failedTestDetails = Array.from(uniqueFailedTests.values());
+
         console.log(`\n--- Test Summary ---`);
-        console.log(`Project: Frezka Landing Page`);
-        console.log(`Total Tests: ${this.totalTests}`);
-        console.log(`Passed: ${this.passCount}`);
-        console.log(`Failed: ${this.failCount}`);
-        console.log(`Flaky Passed: ${this.flakyPassCount}`);
+        console.log(`Project: Handyman Landing Page`);
+        console.log(`Total Tests Run: ${this.totalTests}`);
+        console.log(`Tests Passed: ${finalPassCount}`);
+        console.log(`Tests Failed: ${finalFailCount}`);
 
         if (this.failedTestDetails.length > 0) {
             console.log(`\n--- Failed Test Case Breakdown (${this.failedTestDetails.length} tests) ---`);
             this.failedTestDetails.forEach((failedTest, index) => {
                 console.log(`\n${index + 1}. Test Name: ${failedTest.name}`);
-                console.log(`   Location: ${failedTest.location}`);
-                console.log(`   Error Message: ${failedTest.errorMessage}`);
+                console.log(`    Location: ${failedTest.location}`);
+                console.log(`    Error Message: ${failedTest.errorMessage}`);
             });
         } else {
             console.log(`\nNo test cases failed.`);
@@ -77,50 +91,48 @@ class CustomReporter {
         console.log(`\nFinished the run with overall status: ${result.status}`);
         console.log(`--------------------\n`);
 
-        await this.sendReportEmail(result.status);
+        await this.sendReportEmail(result.status, finalPassCount, finalFailCount);
     }
 
-    async sendReportEmail(overallStatus) {
-        // --- Configuration for Email ---
-        const senderEmail = process.env.EMAIL_USER; // Use environment variable or default
-        const senderPassword = process.env.EMAIL_PASS; // Use environment variable or default
-        const recipientEmails = process.env.RECIPIENT_EMAILS; // Multiple recipients
+    async sendReportEmail(overallStatus, passedCount, failedCount) {
+        const senderEmail = process.env.EMAIL_USER;
+        const senderPassword = process.env.EMAIL_PASS;
+        const recipientEmails = process.env.RECIPIENT_EMAILS;
 
-        // Configure your SMTP transporter
+        if (!senderEmail || !senderPassword || !recipientEmails || !process.env.SMTP_HOST || !process.env.SMTP_PORT) {
+            console.warn("Skipping email send: One or more email environment variables (EMAIL_USER, EMAIL_PASS, RECIPIENT_EMAILS, SMTP_HOST, SMTP_PORT) are not set. Please set them in your environment.");
+            return;
+        }
+
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST, // e.g., 'smtp.office365.com'
-            port: parseInt(process.env.SMTP_PORT), // 465 for SSL, 587 for TLS
-            secure: false, // Use true if port is 465 (SSL), false if 587 (TLS)
+            host: process.env.SMTP_HOST,
+            port: parseInt(process.env.SMTP_PORT),
+            secure: false,
             auth: {
                 user: senderEmail,
                 pass: senderPassword,
             },
         });
 
-        // --- Construct Email Body ---
         let emailHtmlBody = `
             <p>Dear Team,</p>
-            <p>Here is the automated Playwright test report summary for <strong>Frezka Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
+            <p>Here is the automated Playwright test report summary for <strong>Handyman Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
             <hr>
             <h2>Test Summary</h2>
             <table style="width:100%; border-collapse: collapse;">
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Total Tests:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Total Tests Run:</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; color: blue;">${this.totalTests}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Passed:</strong></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; color: green;">${this.passCount}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Passed:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; color: green;">${passedCount}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Failed:</strong></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; color: red;">${this.failCount}</td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Failed:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; color: red;">${failedCount}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Flaky Passed:</strong></td>
-                    <td style="padding: 8px; border: 1px solid #ddd; color: orange;">${this.flakyPassCount}</td>
-                </tr>
-                 <tr>
                     <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Overall Status:</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: ${overallStatus === 'passed' ? 'green' : 'red'};">${overallStatus.toUpperCase()}</td>
                 </tr>
@@ -153,7 +165,6 @@ class CustomReporter {
             <p>Your Automation Team</p>
         `;
 
-        // --- Define Email Options ---
         const mailOptions = {
             from: `"Playwright Report" <${senderEmail}>`,
             to: recipientEmails,
@@ -161,11 +172,10 @@ class CustomReporter {
             html: emailHtmlBody,
         };
 
-        // --- Send Email ---
         try {
             console.log(`Attempting to send email to: ${recipientEmails}`);
             let info = await transporter.sendMail(mailOptions);
-            // console.log('Email sent successfully: %s', info.messageId);
+            // console.log('Email sent successfully: %s', info.messageId); // Uncomment for verbose email logs
         } catch (error) {
             console.error('Error sending email:', error);
             if (error.responseCode === 535) {
@@ -175,7 +185,6 @@ class CustomReporter {
             }
         }
     }
-
 }
 
 module.exports = CustomReporter;
