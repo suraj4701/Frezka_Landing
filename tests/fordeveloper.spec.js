@@ -23,7 +23,7 @@ test("Set for features", async ({ page }) => {
         pagelocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
     const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Simplify Your Salon');
@@ -62,7 +62,7 @@ test("Custom Development Work", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.tech/");
+    expect(newPageUrl).toBe("https://iqonic.tech/");
     const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'Delivered Faster and Smart')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Custom Tech Solutions,  Delivered Faster and Smarter');

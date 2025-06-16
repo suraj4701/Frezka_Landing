@@ -23,7 +23,7 @@ test("Features", async ({ page }) => {
         pagelocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/feature/services-and-packages/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/services-and-packages/");
     const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Take Full Control of Your Service');
@@ -42,7 +42,7 @@ test("Custom Development Work", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://service.iqonic.design/");
+    expect(newPageUrl).toBe("https://service.iqonic.design/");
     const iqonicDesignSpanLocator = newPage.locator("//p[contains(text(),'HIRE US')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('HIRE US');

@@ -72,7 +72,7 @@ class CustomReporter {
         this.failedTestDetails = Array.from(uniqueFailedTests.values());
 
         console.log(`\n--- Test Summary ---`);
-        console.log(`Project: Handyman Landing Page`);
+        console.log(`Project: Frezka Landing Page`);
         console.log(`Total Tests Run: ${this.totalTests}`);
         console.log(`Tests Passed: ${finalPassCount}`);
         console.log(`Tests Failed: ${finalFailCount}`);

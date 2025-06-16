@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { EnvantoFrezkaVerify } = require('./common');
+const { EnvantoFrezkaVerify, BuyServiceVerify } = require('./common');
 
 test("pricing Buy now", async ({ page }) => {
     await page.goto("https://frezka.iqonic.design/")
@@ -20,11 +20,5 @@ test("pricing buy service", async ({ page }) => {
     expect(PageUrl).toBe("https://frezka.iqonic.design/pricing/");
     const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'Buy Service')]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-flutter-app-with-laravel-backend/");
+    await BuyServiceVerify(page, envantofrezkaLinkLocator);
 })

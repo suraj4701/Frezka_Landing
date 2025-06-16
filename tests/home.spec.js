@@ -61,7 +61,7 @@ test("learn button verify", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
     const iqonicDesignSpanLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Simplify Your Salon');
@@ -75,7 +75,7 @@ test("business onwer learn button verify", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/spa-and-salon-software-for-business-owners/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/spa-and-salon-software-for-business-owners/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/spa-and-salon-software-for-business-owners/");
     const iqonicDesignSpanLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('How Frezka Empowers');
@@ -89,7 +89,7 @@ test("for developers learn button verify", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/salon-and-spa-software-for-developers/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/salon-and-spa-software-for-developers/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/salon-and-spa-software-for-developers/");
     const iqonicDesignSpanLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('How Frezka Empowers');
@@ -138,7 +138,7 @@ test("Salon Booking Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/salon-booking-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/salon-booking-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/salon-booking-software/");
     const iqonicDesignSpanLocator = page.locator("//h2[contains(text(),'Simplify Salon Bookings & Amplify Your Business Gr')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Simplify Salon Bookings & Amplify Your Business Growth!');
@@ -152,7 +152,7 @@ test("Salon Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/salon-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/salon-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/salon-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -166,7 +166,7 @@ test("Spa Scheduling Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/spa-scheduling-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/spa-scheduling-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/spa-scheduling-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -180,7 +180,7 @@ test("Hair Salon Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/hair-salon-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/hair-salon-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/hair-salon-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -194,7 +194,7 @@ test("Medical Spa Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/medical-spa-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/medical-spa-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/medical-spa-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -208,7 +208,7 @@ test("Software for spas", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/software-for-spas/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/software-for-spas/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/software-for-spas/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -222,7 +222,7 @@ test("Gym management software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/gym-management-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/gym-management-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/gym-management-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -236,7 +236,7 @@ test("Fitness Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/fitness-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/fitness-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/fitness-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -250,7 +250,7 @@ test("Nail Salon Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/nail-salon-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/nail-salon-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/nail-salon-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -264,7 +264,7 @@ test("Barbershop Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/barbershop-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/barbershop-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/barbershop-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -278,7 +278,7 @@ test("Massage Salon Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/massage-salon-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/massage-salon-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/massage-salon-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -292,7 +292,7 @@ test("Personal Trainer Software", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/personal-trainer-software/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/personal-trainer-software/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/personal-trainer-software/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -305,7 +305,7 @@ test("Frezka Logo", async ({ page }) => {
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Effortless Salon Management')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Effortless Salon Management");
@@ -320,7 +320,7 @@ test("Facebook link verify", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://www.facebook.com/iqonicdesign");
+    expect(newPageUrl).toBe("https://www.facebook.com/iqonicdesign");
 })
 
 test("YouTube link verify", async ({ page }) => {
@@ -332,7 +332,7 @@ test("YouTube link verify", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://www.youtube.com/c/IqonicDesign");
+    expect(newPageUrl).toBe("https://www.youtube.com/c/IqonicDesign");
 })
 
 test("X Twitter link verify", async ({ page }) => {
@@ -344,7 +344,7 @@ test("X Twitter link verify", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://x.com/iqonicdesign");
+    expect(newPageUrl).toBe("https://x.com/iqonicdesign");
 })
 
 test("Instagram link verify", async ({ page }) => {
@@ -356,7 +356,7 @@ test("Instagram link verify", async ({ page }) => {
         facebookLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://www.instagram.com/iqonicdesign/");
+    expect(newPageUrl).toBe("https://www.instagram.com/iqonicdesign/");
 })
 
 test("Footer Admin Panel", async ({ page }) => {
@@ -367,7 +367,7 @@ test("Footer Admin Panel", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/product/laravel-admin-panel/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/product/laravel-admin-panel/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Admin Panel')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Admin Panel");
@@ -381,7 +381,7 @@ test("Footer Mobile App", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'Mobile App')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Mobile App");
@@ -397,7 +397,7 @@ test("Footer Docs", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://apps.iqonic.design/documentation/frezka-doc/build/");
+    expect(newPageUrl).toBe("https://apps.iqonic.design/documentation/frezka-doc/build/");
     const iqonicDesignSpanLocator = newPage.locator("//h2[contains(text(),'Installation')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Installation');
@@ -413,7 +413,7 @@ test("Footer FAQs", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/faq/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/faq/");
     const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'FAQs')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('FAQs');
@@ -427,7 +427,7 @@ test("Footer Roadmap", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/roadmap/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/roadmap/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/roadmap/");
     const iqonicDesignSpanLocator = page.locator("//li[contains(text(),'Roadmap')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Roadmap");
@@ -443,7 +443,7 @@ test("Footer Support", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.desky.support/");
+    expect(newPageUrl).toBe("https://iqonic.desky.support/");
     const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'Support Desk')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Support Desk');
@@ -457,7 +457,7 @@ test("Footer Pricing", async ({ page }) => {
     await learnbtnLinkLocator.click();
     await page.waitForURL("https://frezka.iqonic.design/pricing/")
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://frezka.iqonic.design/pricing/");
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/pricing/");
     const iqonicDesignSpanLocator = page.locator("//h6[contains(text(),'REGULAR VS EXTENDED')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("REGULAR VS EXTENDED");
@@ -473,7 +473,7 @@ test("Footer Get A Quote", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.tech/cost-calculator/");
+    expect(newPageUrl).toBe("https://iqonic.tech/cost-calculator/");
     const iqonicDesignSpanLocator = newPage.locator("//h3[contains(text(),'Calculate The Project Estimate Price')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Calculate The Project Estimate Price');
@@ -489,7 +489,7 @@ test("Footer License", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.design/licensing-terms-more/");
+    expect(newPageUrl).toBe("https://iqonic.design/licensing-terms-more/");
     const iqonicDesignSpanLocator = newPage.locator("//h2[contains(text(),'Licensing, Terms & More...')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Licensing, Terms & More...');
@@ -505,7 +505,7 @@ test("Footer hire us", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.tech/");
+    expect(newPageUrl).toBe("https://iqonic.tech/");
     const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'Delivered Faster and Smart')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Custom Tech Solutions,  Delivered Faster and Smarter');
@@ -521,7 +521,7 @@ test("Footer Iqonic Design", async ({ page }) => {
         envantofrezkaLinkLocator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toContain("https://iqonic.design/");
+    expect(newPageUrl).toBe("https://iqonic.design/");
     const iqonicDesignSpanLocator = newPage.locator("//h2[contains(text(),'Production Ready Code Scripts & Design Templates F')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Production Ready Code Scripts & Design Templates For Your Next Project');

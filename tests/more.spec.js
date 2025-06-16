@@ -19,7 +19,7 @@ test("More Book Demo Call", async ({ page }) => {
     await page.locator("//a[contains(text(),'Book Demo Call 📞')]").click()
 
     const newPageUrl = page.url();
-    expect(newPageUrl).toContain("https://tidycal.com/iqonicdesign/frezka-demo-call");
+    expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-demo-call");
     const iqonicDesignSpanLocator = page.locator("//h1[contains(text(),'Frezka - Demo Call')]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain("Frezka - Demo Call");
