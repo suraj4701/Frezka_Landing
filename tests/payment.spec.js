@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const { TrustpilotVerify, EnvantoVerify, AdminPanelVerify, EnvantoFrezkaVerify } = require('./common');
+const home_url = process.env.HOME_URL;
 
 test("Payment Trustpilot link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()
@@ -13,7 +14,7 @@ test("Payment Trustpilot link verify", async ({ page }) => {
 })
 
 test("Payment Envanto Frezka link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()
@@ -24,7 +25,7 @@ test("Payment Envanto Frezka link verify", async ({ page }) => {
 })
 
 test("Payment Admin Panel link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()
@@ -35,7 +36,7 @@ test("Payment Admin Panel link verify", async ({ page }) => {
 })
 
 test("Payment Envanto link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()
@@ -46,7 +47,7 @@ test("Payment Envanto link verify", async ({ page }) => {
 })
 
 test("Payment client pagee", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()
@@ -67,7 +68,7 @@ test("Payment client pagee", async ({ page }) => {
 })
 
 test("Payment financial management", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[4]/a[1]").click()

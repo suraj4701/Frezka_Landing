@@ -1,7 +1,8 @@
 const { test, expect } = require('@playwright/test');
+const home_url = process.env.HOME_URL;
 
 test("GetHelp Support", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
     const support = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[2]/a[1]")
@@ -15,7 +16,7 @@ test("GetHelp Support", async ({ page }) => {
 })
 
 test("GetHelp Blog", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
     const blog = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[3]/a[1]")
@@ -29,7 +30,7 @@ test("GetHelp Blog", async ({ page }) => {
 })
 
 test("GetHelp Documentation", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
     const blog = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[1]/a[1]")

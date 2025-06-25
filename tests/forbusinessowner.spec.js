@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const { TrustpilotVerify } = require('./common');
+const home_url = process.env.HOME_URL;
 
 test("Trustpilot link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
@@ -11,7 +12,7 @@ test("Trustpilot link verify", async ({ page }) => {
 })
 
 test("Features", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
@@ -30,7 +31,7 @@ test("Features", async ({ page }) => {
 })
 
 test("Custom Development Work", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()

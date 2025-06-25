@@ -1,8 +1,9 @@
 const { test, expect } = require('@playwright/test');
 const { TrustpilotVerify, EnvantoVerify, EnvantoFrezkaVerify, UserappPlaystore, UserappAppstore } = require('./common');
+const home_url = process.env.HOME_URL;
 
 test("App Trustpilot link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -13,7 +14,7 @@ test("App Trustpilot link verify", async ({ page }) => {
 })
 
 test("App Envanto link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -24,7 +25,7 @@ test("App Envanto link verify", async ({ page }) => {
 })
 
 test("App playstore link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -35,7 +36,7 @@ test("App playstore link verify", async ({ page }) => {
 })
 
 test("App Envanto Frezka link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -46,7 +47,7 @@ test("App Envanto Frezka link verify", async ({ page }) => {
 })
 
 test("App booking appointments", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -64,7 +65,7 @@ test("App booking appointments", async ({ page }) => {
 })
 
 test("App payment methods", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -82,7 +83,7 @@ test("App payment methods", async ({ page }) => {
 })
 
 test("App playstore link verify2", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
@@ -94,7 +95,7 @@ test("App playstore link verify2", async ({ page }) => {
 })
 
 test("App Appstore link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()

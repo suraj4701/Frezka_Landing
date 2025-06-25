@@ -1,60 +1,61 @@
 const { test, expect } = require('@playwright/test');
 const { TrustpilotVerify, EnvantoVerify, UserappPlaystore, UserappAppstore, AdminPanelVerify, EnvantoFrezkaVerify, BookcallVerify, BuyServiceVerify } = require('./common');
+const home_url = process.env.HOME_URL;
 
 test("Home Page Showing", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const headingname = await page.locator("//h6[normalize-space()='Effortless Salon Management']").textContent()
     const trimmedHeadingname = headingname.trim();
     expect(trimmedHeadingname).toBe("Effortless Salon Management")
 })
 
 test("Trustpilot link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
     await TrustpilotVerify(page, trustpilotLinkLocator);
 })
 
 test("Envanto link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
     await EnvantoVerify(page, trustpilotLinkLocator);
 })
 
 test("User App playstore link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const userappplaystoreLinkLocator = page.locator("//a[normalize-space()='User App']");
     await UserappPlaystore(page, userappplaystoreLinkLocator);
 })
 
 test("Admin Panel link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const adminpanelLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='Admin Panel']");
     await AdminPanelVerify(page, adminpanelLinkLocator);
 })
 
 test("Admin Panel link verify 2", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const adminpanelLinkLocator = page.locator("//a[normalize-space()='View Demo']");
     await adminpanelLinkLocator.scrollIntoViewIfNeeded();
     await AdminPanelVerify(page, adminpanelLinkLocator);
 })
 
 test("User App Appstore link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const userappAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
     await userappAppstoreLinkLocator.scrollIntoViewIfNeeded();
     await UserappAppstore(page, userappAppstoreLinkLocator);
 })
 
 test("User App playstore link verify 2", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
     await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
     await UserappPlaystore(page, userappplaystoreLinkLocator);
 })
 
 test("learn button verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[9]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -68,7 +69,7 @@ test("learn button verify", async ({ page }) => {
 });
 
 test("business onwer learn button verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[14]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -82,7 +83,7 @@ test("business onwer learn button verify", async ({ page }) => {
 });
 
 test("for developers learn button verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("(//a[contains(@href,'https://frezka.iqonic.design/for-developers/')])[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -96,42 +97,42 @@ test("for developers learn button verify", async ({ page }) => {
 });
 
 test("book demo call link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const bookcallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await bookcallLinkLocator.scrollIntoViewIfNeeded();
     await BookcallVerify(page, bookcallLinkLocator);
 })
 
 test("Envanto frezka link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[16]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
 test("Envanto frezka link verify 2", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[17]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
 test("buy service link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const burserviceLinkLocator = page.locator("//a[contains(text(),'Buy Service')]");
     await burserviceLinkLocator.scrollIntoViewIfNeeded();
     await BuyServiceVerify(page, burserviceLinkLocator);
 })
 
 test("Envanto frezka link verify 3", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[18]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
     await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
 test("Salon Booking Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Salon booking software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -145,7 +146,7 @@ test("Salon Booking Software", async ({ page }) => {
 });
 
 test("Salon Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Salon software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -159,7 +160,7 @@ test("Salon Software", async ({ page }) => {
 });
 
 test("Spa Scheduling Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Spa scheduling software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -173,7 +174,7 @@ test("Spa Scheduling Software", async ({ page }) => {
 });
 
 test("Hair Salon Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Hair salon software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -187,7 +188,7 @@ test("Hair Salon Software", async ({ page }) => {
 });
 
 test("Medical Spa Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Medical spa software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -201,7 +202,7 @@ test("Medical Spa Software", async ({ page }) => {
 });
 
 test("Software for spas", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Software for spas')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -215,7 +216,7 @@ test("Software for spas", async ({ page }) => {
 });
 
 test("Gym management software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Gym management software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -229,7 +230,7 @@ test("Gym management software", async ({ page }) => {
 });
 
 test("Fitness Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Fitness software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -243,7 +244,7 @@ test("Fitness Software", async ({ page }) => {
 });
 
 test("Nail Salon Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Nail Salon Software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -257,7 +258,7 @@ test("Nail Salon Software", async ({ page }) => {
 });
 
 test("Barbershop Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Barbershop software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -271,7 +272,7 @@ test("Barbershop Software", async ({ page }) => {
 });
 
 test("Massage Salon Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Massage Salon Software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -285,7 +286,7 @@ test("Massage Salon Software", async ({ page }) => {
 });
 
 test("Personal Trainer Software", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Personal trainer software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -299,7 +300,7 @@ test("Personal Trainer Software", async ({ page }) => {
 });
 
 test("Frezka Logo", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -312,7 +313,7 @@ test("Frezka Logo", async ({ page }) => {
 });
 
 test("Facebook link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const facebookLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[1]/a[1]/i[1]");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
     const [newPage] = await Promise.all([
@@ -324,7 +325,7 @@ test("Facebook link verify", async ({ page }) => {
 })
 
 test("YouTube link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const facebookLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[2]/a[1]/i[1]");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
     const [newPage] = await Promise.all([
@@ -336,7 +337,7 @@ test("YouTube link verify", async ({ page }) => {
 })
 
 test("X Twitter link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const facebookLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[3]/a[1]/i[1]");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
     const [newPage] = await Promise.all([
@@ -348,7 +349,7 @@ test("X Twitter link verify", async ({ page }) => {
 })
 
 test("Instagram link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const facebookLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/ul[1]/li[4]/a[1]/i[1]");
     await facebookLinkLocator.scrollIntoViewIfNeeded()
     const [newPage] = await Promise.all([
@@ -360,7 +361,7 @@ test("Instagram link verify", async ({ page }) => {
 })
 
 test("Footer Admin Panel", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[1]/a[1]/span[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -374,7 +375,7 @@ test("Footer Admin Panel", async ({ page }) => {
 });
 
 test("Footer Mobile App", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]/span[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -388,7 +389,7 @@ test("Footer Mobile App", async ({ page }) => {
 });
 
 test("Footer Docs", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[1]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -404,7 +405,7 @@ test("Footer Docs", async ({ page }) => {
 })
 
 test("Footer FAQs", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[2]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -420,7 +421,7 @@ test("Footer FAQs", async ({ page }) => {
 })
 
 test("Footer Roadmap", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[3]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -434,7 +435,7 @@ test("Footer Roadmap", async ({ page }) => {
 });
 
 test("Footer Support", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[1]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -450,7 +451,7 @@ test("Footer Support", async ({ page }) => {
 })
 
 test("Footer Pricing", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/");
+    await page.goto(home_url);;
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[2]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
@@ -464,7 +465,7 @@ test("Footer Pricing", async ({ page }) => {
 });
 
 test("Footer Get A Quote", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[3]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -480,7 +481,7 @@ test("Footer Get A Quote", async ({ page }) => {
 })
 
 test("Footer License", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[4]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -496,7 +497,7 @@ test("Footer License", async ({ page }) => {
 })
 
 test("Footer hire us", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[5]/a[1]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
@@ -512,7 +513,7 @@ test("Footer hire us", async ({ page }) => {
 })
 
 test("Footer Iqonic Design", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
+    await page.goto(home_url);
     const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'Iqonic Design.')]");
     await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
 
