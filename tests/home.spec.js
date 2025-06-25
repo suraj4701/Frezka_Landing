@@ -10,7 +10,7 @@ test("Home Page Showing", async ({ page }) => {
 
 test("Trustpilot link verify", async ({ page }) => {
     await page.goto("https://frezka.iqonic.design/")
-    const trustpilotLinkLocator = page.locator("(//div[@class='elementor-widget-container'])[5]");
+    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
     await TrustpilotVerify(page, trustpilotLinkLocator);
 })
 
@@ -95,18 +95,18 @@ test("for developers learn button verify", async ({ page }) => {
     expect(verifytext).toContain('How Frezka Empowers');
 });
 
-test("Envanto frezka link verify", async ({ page }) => {
-    await page.goto("https://frezka.iqonic.design/")
-    const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/a[1]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
-    await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
-})
-
 test("book demo call link verify", async ({ page }) => {
     await page.goto("https://frezka.iqonic.design/")
-    const bookcallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[16]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+    const bookcallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await bookcallLinkLocator.scrollIntoViewIfNeeded();
     await BookcallVerify(page, bookcallLinkLocator);
+})
+
+test("Envanto frezka link verify", async ({ page }) => {
+    await page.goto("https://frezka.iqonic.design/")
+    const envantofrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[16]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/a[1]");
+    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    await EnvantoFrezkaVerify(page, envantofrezkaLinkLocator);
 })
 
 test("Envanto frezka link verify 2", async ({ page }) => {
