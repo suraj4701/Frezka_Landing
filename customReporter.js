@@ -109,7 +109,7 @@ class CustomReporter {
         this.failedTestDetails = Array.from(uniqueFailedTests.values());
 
         console.log(`\n--- Test Summary ---`);
-        console.log(`Project: KiviLab Landing Page`);
+        console.log(`Project: Frezka Landing Page`);
         console.log(`Total Tests Run: ${this.totalTests}`);
         console.log(`Tests Passed: ${finalPassCount}`);
         console.log(`Tests Failed: ${finalFailCount}`);
@@ -153,7 +153,7 @@ class CustomReporter {
 
         let emailHtmlBody = `
             <p>Dear Team,</p>
-            <p>Here is the automated Playwright test report summary for <strong>KiviLab Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
+            <p>Here is the automated Playwright test report summary for <strong>Frezka Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
             <hr>
             <h2>Test Summary</h2>
             <table style="width:100%; border-collapse: collapse;">
