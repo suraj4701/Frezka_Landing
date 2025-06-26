@@ -16,14 +16,36 @@ class CustomReporter {
     onTestEnd(test, result) {
         this.testFinalStatuses.set(test.id, result.status);
         let errorMessage = 'No specific error message found.';
+        let testSpecificErrorLabel = '';
+
         if (result.errors && result.errors.length > 0) {
             errorMessage = result.errors.map(error => this.stripAnsiCodes(error.message)).join('\n');
+
+            for (const error of result.errors) {
+                const currentErrorMessageLower = this.stripAnsiCodes(error.message).toLowerCase();
+
+                if (currentErrorMessageLower.includes('expect(') || currentErrorMessageLower.includes('expect.')) {
+                    if (currentErrorMessageLower.includes('expect(received).tobe(expected)')) testSpecificErrorLabel = 'ASSERTION FAILED (Expected Result is not Match.)';
+                    else if (currentErrorMessageLower.includes('expect(received).tohaveurl')) testSpecificErrorLabel = 'URL MISMATCH';
+                    else if (currentErrorMessageLower.includes('expect(received).tobevisible')) testSpecificErrorLabel = 'ELEMENT NOT VISIBLE';
+                    else testSpecificErrorLabel = 'ASSERTION FAILED (GENERIC)';
+                    break;
+                } else if (currentErrorMessageLower.includes('locator not found') || currentErrorMessageLower.includes('waiting for selector') || currentErrorMessageLower.includes('waiting for locator')) {
+                    testSpecificErrorLabel = 'LOCATOR NOT FOUND';
+                    break;
+                } else if (currentErrorMessageLower.includes('locator.scrollintoviewifneeded') || currentErrorMessageLower.includes('waiting for locator') || currentErrorMessageLower.includes('waiting for selector')) testSpecificErrorLabel = 'TIMEOUT ERROR (LOCATOR ACTION)';
+                else if (currentErrorMessageLower.includes('timeout') && !testSpecificErrorLabel.includes('LOCATOR ACTION')) testSpecificErrorLabel = 'TIMEOUT ERROR';
+                else if ((currentErrorMessageLower.includes('syntaxerror') || currentErrorMessageLower.includes('not a valid xpath expression')) && !testSpecificErrorLabel) testSpecificErrorLabel = 'INVALID LOCATOR SYNTAX';
+            }
+
+            if (!testSpecificErrorLabel && result.errors.length > 0) testSpecificErrorLabel = 'GENERIC PLAYWRIGHT ERROR';
         }
 
         this.testDetailsMap.set(test.id, {
             name: test.title,
             location: `${test.location.file}:${test.location.line}`,
             latestError: errorMessage,
+            errorLabel: testSpecificErrorLabel,
         });
 
         if (result.status === 'failed' || result.status === 'timedOut') {
@@ -33,11 +55,25 @@ class CustomReporter {
             if (result.errors && result.errors.length > 0) {
                 console.log('Error Details:');
                 result.errors.forEach((error, index) => {
-                    console.log(`   ${index + 1}. Message: ${this.stripAnsiCodes(error.message)}`);
+                    let individualErrorLabel = '';
+                    const currentErrorMessageLower = this.stripAnsiCodes(error.message).toLowerCase();
+
+                    if (currentErrorMessageLower.includes('expect(') || currentErrorMessageLower.includes('expect.')) {
+                        if (currentErrorMessageLower.includes('expect(received).tobe(expected)')) individualErrorLabel = 'ASSERTION FAILED (Expected Result is not Match.)';
+                        else if (currentErrorMessageLower.includes('expect(received).tohaveurl')) individualErrorLabel = 'URL MISMATCH';
+                        else if (currentErrorMessageLower.includes('expect(received).tobevisible')) individualErrorLabel = 'ELEMENT NOT VISIBLE';
+                        else individualErrorLabel = 'ASSERTION FAILED (GENERIC)';
+                    } else if (currentErrorMessageLower.includes('locator not found') || currentErrorMessageLower.includes('waiting for selector') || currentErrorMessageLower.includes('waiting for locator')) individualErrorLabel = 'LOCATOR NOT FOUND';
+                    else if (currentErrorMessageLower.includes('locator.scrollintoviewifneeded') || currentErrorMessageLower.includes('waiting for locator') || currentErrorMessageLower.includes('waiting for selector')) individualErrorLabel = 'TIMEOUT ERROR (LOCATOR ACTION)';
+                    else if (currentErrorMessageLower.includes('timeout')) individualErrorLabel = 'TIMEOUT ERROR';
+                    else if (currentErrorMessageLower.includes('syntaxerror') || currentErrorMessageLower.includes('not a valid xpath expression')) individualErrorLabel = 'INVALID LOCATOR SYNTAX';
+                    else individualErrorLabel = 'GENERIC PLAYWRIGHT ERROR';
+
+                    const labelPrefix = individualErrorLabel ? `${individualErrorLabel}: ` : '';
+                    console.log(`    ${index + 1}. Error Label: ${labelPrefix}`);
+                    console.log(`    ${index + 1}. Message: ${this.stripAnsiCodes(error.message)}`);
                 });
-            } else {
-                console.log(errorMessage);
-            }
+            } else console.log(errorMessage);
             console.log('========================================\n');
         }
     }
@@ -63,6 +99,7 @@ class CustomReporter {
                             name: testDetails.name,
                             location: testDetails.location,
                             errorMessage: testDetails.latestError,
+                            errorLabel: testDetails.errorLabel,
                         });
                     }
                 }
@@ -72,7 +109,7 @@ class CustomReporter {
         this.failedTestDetails = Array.from(uniqueFailedTests.values());
 
         console.log(`\n--- Test Summary ---`);
-        console.log(`Project: Frezka Landing Page`);
+        console.log(`Project: KiviLab Landing Page`);
         console.log(`Total Tests Run: ${this.totalTests}`);
         console.log(`Tests Passed: ${finalPassCount}`);
         console.log(`Tests Failed: ${finalFailCount}`);
@@ -82,11 +119,11 @@ class CustomReporter {
             this.failedTestDetails.forEach((failedTest, index) => {
                 console.log(`\n${index + 1}. Test Name: ${failedTest.name}`);
                 console.log(`    Location: ${failedTest.location}`);
-                console.log(`    Error Message: ${failedTest.errorMessage}`);
+                const labelPrefix = failedTest.errorLabel ? `${failedTest.errorLabel}: ` : '';
+                console.log(`    Error label: ${labelPrefix}`);
+                console.log(`    Error Message:${failedTest.errorMessage}`);
             });
-        } else {
-            console.log(`\nNo test cases failed.`);
-        }
+        } else console.log(`\nNo test cases failed.`);
 
         console.log(`\nFinished the run with overall status: ${result.status}`);
         console.log(`--------------------\n`);
@@ -116,7 +153,7 @@ class CustomReporter {
 
         let emailHtmlBody = `
             <p>Dear Team,</p>
-            <p>Here is the automated Playwright test report summary for <strong>Frezka Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
+            <p>Here is the automated Playwright test report summary for <strong>KiviLab Landing Page</strong> as of ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}.</p>
             <hr>
             <h2>Test Summary</h2>
             <table style="width:100%; border-collapse: collapse;">
@@ -147,18 +184,28 @@ class CustomReporter {
                 <ul style="list-style-type: none; padding: 0;">
             `;
             this.failedTestDetails.forEach((failedTest, index) => {
+                const errorLabelHtml = failedTest.errorLabel ? `
+                    <span style="float: right; background-color: #ffe0e0; color: #cc0000; padding: 3px 8px; border-radius: 8px;font-size: 0.9em; font-weight: bold; border: 1px solid #ffb3b3;">${failedTest.errorLabel}</span>` : '';
+
                 emailHtmlBody += `
-                    <li style="margin-bottom: 15px; border: 1px solid #eee; padding: 10px; border-radius: 5px; background-color: #fff;">
-                        <strong>${index + 1}. Test Name:</strong> ${failedTest.name}<br>
-                        <span style="display: inline-block; margin-left: 20px;"><strong>Location:</strong> ${failedTest.location}</span><br>
-                        <span style="display: inline-block; margin-left: 20px;"><strong>Error Message:</strong></span> <pre style="white-space: pre-wrap; word-wrap: break-word; background-color: #f8f8f8; padding: 5px; border: 1px solid #ddd; margin-left: 20px;">${failedTest.errorMessage}</pre>
+                    <li style="margin-bottom: 15px; border: 1px solid #eee; padding: 10px; border-radius: 5px; background-color: #fff; overflow: hidden;">
+                        <div style="font-weight: bold; display: flex; justify-content: space-between; align-items: center;">
+                            <div style="margin-right: 20px;" >${index + 1}. Test Name: ${failedTest.name}</div>
+                           <div> ${errorLabelHtml}</div>
+                        </div>
+                        <span style="display: block; margin-left: 20px; margin-top: 5px;">
+                            <strong>Location:</strong> 
+                            ${failedTest.location}
+                        </span><br>
+                        <span style="display: block; margin-left: 20px;">
+                            <strong>Error Message:</strong>
+                        </span> 
+                        <pre style="white-space: pre-wrap; word-wrap: break-word; background-color: #f8f8f8; padding: 5px; border: 1px solid #ddd; margin-left: 20px;">${failedTest.errorMessage}</pre>
                     </li>
                 `;
             });
             emailHtmlBody += `</ul><hr>`;
-        } else {
-            emailHtmlBody += `<p>All test cases passed! 🎉</p><hr>`;
-        }
+        } else emailHtmlBody += `<p>All test cases passed! 🎉</p><hr>`;
 
         emailHtmlBody += `
             <p>Best regards,</p>
@@ -175,14 +222,10 @@ class CustomReporter {
         try {
             console.log(`Attempting to send email to: ${recipientEmails}`);
             let info = await transporter.sendMail(mailOptions);
-            // console.log('Email sent successfully: %s', info.messageId); // Uncomment for verbose email logs
         } catch (error) {
             console.error('Error sending email:', error);
-            if (error.responseCode === 535) {
-                console.error('Authentication failed. Check your email user/password or app password.');
-            } else if (error.code === 'EENVELOPE') {
-                console.error('Email address validation failed. Check recipient email format.');
-            }
+            if (error.responseCode === 535) console.error('Authentication failed. Check your email user/password or app password.');
+            else if (error.code === 'EENVELOPE') console.error('Email address validation failed. Check recipient email format.');
         }
     }
 }
