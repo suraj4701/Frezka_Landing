@@ -451,7 +451,7 @@ test("Footer Support", async ({ page }) => {
 })
 
 test("Footer Pricing", async ({ page }) => {
-    await page.goto(home_url);;
+    await page.goto(home_url);
     await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[2]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();

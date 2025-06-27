@@ -103,7 +103,7 @@ const BuyServiceVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-website-with-laravel-backend/");
+    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-with-laravel-backend/");
     return newPage;
 }
 
