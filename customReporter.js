@@ -158,19 +158,19 @@ class CustomReporter {
             <h2>Test Summary</h2>
             <table style="width:100%; border-collapse: collapse;">
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Total Tests Run:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Total Tests Run</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; color: blue;">${this.totalTests}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Passed:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Passed</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; color: green;">${passedCount}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Failed:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Tests Failed</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; color: red;">${failedCount}</td>
                 </tr>
                 <tr>
-                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Overall Status:</strong></td>
+                    <td style="padding: 8px; border: 1px solid #ddd; background-color: #f2f2f2;"><strong>Overall Status</strong></td>
                     <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: ${overallStatus === 'passed' ? 'green' : 'red'};">${overallStatus.toUpperCase()}</td>
                 </tr>
             </table>
