@@ -3,7 +3,6 @@ const home_url = process.env.HOME_URL;
 
 test("More Hire Us", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     const support = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[6]/a[1]")
 
     const [newPage] = await Promise.all([
@@ -15,8 +14,7 @@ test("More Hire Us", async ({ page }) => {
 })
 
 test("More Book Demo Call", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     await page.locator("//a[contains(text(),'Book Demo Call 📞')]").click()
 
     const newPageUrl = page.url();

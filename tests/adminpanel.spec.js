@@ -4,7 +4,6 @@ const home_url = process.env.HOME_URL;
 
 test("AdminPanel Trustpilot link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
@@ -15,7 +14,6 @@ test("AdminPanel Trustpilot link verify", async ({ page }) => {
 
 test("AdminPanel Envanto link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
@@ -26,7 +24,6 @@ test("AdminPanel Envanto link verify", async ({ page }) => {
 
 test("AdminPanel Admin Panel link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
@@ -37,7 +34,6 @@ test("AdminPanel Admin Panel link verify", async ({ page }) => {
 
 test("AdminPanel Envanto Frezka link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
@@ -48,7 +44,6 @@ test("AdminPanel Envanto Frezka link verify", async ({ page }) => {
 
 test("AdminPanel visual analytics", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();
@@ -66,7 +61,6 @@ test("AdminPanel visual analytics", async ({ page }) => {
 
 test("AdminPanel scheduling and management", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
     const PageUrl = page.url();

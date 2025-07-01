@@ -4,7 +4,6 @@ const home_url = process.env.HOME_URL;
 
 test("Trustpilot link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
@@ -13,7 +12,6 @@ test("Trustpilot link verify", async ({ page }) => {
 
 test("Features", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
     const pagelocator = page.locator("//a[contains(text(),'features')]");
@@ -32,7 +30,6 @@ test("Features", async ({ page }) => {
 
 test("Custom Development Work", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
     const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'custom development work')]");

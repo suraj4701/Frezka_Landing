@@ -4,7 +4,6 @@ const home_url = process.env.HOME_URL;
 
 test("App Trustpilot link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -15,7 +14,6 @@ test("App Trustpilot link verify", async ({ page }) => {
 
 test("App Envanto link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -26,7 +24,6 @@ test("App Envanto link verify", async ({ page }) => {
 
 test("App playstore link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -37,7 +34,6 @@ test("App playstore link verify", async ({ page }) => {
 
 test("App Envanto Frezka link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -48,7 +44,6 @@ test("App Envanto Frezka link verify", async ({ page }) => {
 
 test("App booking appointments", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -66,7 +61,6 @@ test("App booking appointments", async ({ page }) => {
 
 test("App payment methods", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -84,7 +78,6 @@ test("App payment methods", async ({ page }) => {
 
 test("App playstore link verify2", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();
@@ -96,7 +89,6 @@ test("App playstore link verify2", async ({ page }) => {
 
 test("App Appstore link verify", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
     const PageUrl = page.url();

@@ -55,8 +55,7 @@ test("User App playstore link verify 2", async ({ page }) => {
 })
 
 test("learn button verify", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[9]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -69,8 +68,7 @@ test("learn button verify", async ({ page }) => {
 });
 
 test("business onwer learn button verify", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[14]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -83,8 +81,7 @@ test("business onwer learn button verify", async ({ page }) => {
 });
 
 test("for developers learn button verify", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("(//a[contains(@href,'https://frezka.iqonic.design/for-developers/')])[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -132,8 +129,7 @@ test("Envanto frezka link verify 3", async ({ page }) => {
 })
 
 test("Salon Booking Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Salon booking software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -146,8 +142,7 @@ test("Salon Booking Software", async ({ page }) => {
 });
 
 test("Salon Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Salon software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -160,8 +155,7 @@ test("Salon Software", async ({ page }) => {
 });
 
 test("Spa Scheduling Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Spa scheduling software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -174,8 +168,7 @@ test("Spa Scheduling Software", async ({ page }) => {
 });
 
 test("Hair Salon Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Hair salon software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -188,8 +181,7 @@ test("Hair Salon Software", async ({ page }) => {
 });
 
 test("Medical Spa Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Medical spa software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -202,8 +194,7 @@ test("Medical Spa Software", async ({ page }) => {
 });
 
 test("Software for spas", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Software for spas')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -216,8 +207,7 @@ test("Software for spas", async ({ page }) => {
 });
 
 test("Gym management software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Gym management software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -230,8 +220,7 @@ test("Gym management software", async ({ page }) => {
 });
 
 test("Fitness Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Fitness software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -244,8 +233,7 @@ test("Fitness Software", async ({ page }) => {
 });
 
 test("Nail Salon Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Nail Salon Software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -258,8 +246,7 @@ test("Nail Salon Software", async ({ page }) => {
 });
 
 test("Barbershop Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Barbershop software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -272,8 +259,7 @@ test("Barbershop Software", async ({ page }) => {
 });
 
 test("Massage Salon Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Massage Salon Software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -286,8 +272,7 @@ test("Massage Salon Software", async ({ page }) => {
 });
 
 test("Personal Trainer Software", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//span[contains(text(),'Personal trainer software')]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -300,8 +285,7 @@ test("Personal Trainer Software", async ({ page }) => {
 });
 
 test("Frezka Logo", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -361,8 +345,7 @@ test("Instagram link verify", async ({ page }) => {
 })
 
 test("Footer Admin Panel", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[1]/a[1]/span[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -375,8 +358,7 @@ test("Footer Admin Panel", async ({ page }) => {
 });
 
 test("Footer Mobile App", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]/span[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -421,8 +403,7 @@ test("Footer FAQs", async ({ page }) => {
 })
 
 test("Footer Roadmap", async ({ page }) => {
-    await page.goto(home_url);;
-    await page.waitForTimeout(2000)
+    await page.goto(home_url);
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[3]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
@@ -452,7 +433,6 @@ test("Footer Support", async ({ page }) => {
 
 test("Footer Pricing", async ({ page }) => {
     await page.goto(home_url);
-    await page.waitForTimeout(2000)
     const learnbtnLinkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[2]/a[1]");
     await learnbtnLinkLocator.scrollIntoViewIfNeeded();
     await learnbtnLinkLocator.click();
