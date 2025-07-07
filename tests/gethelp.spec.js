@@ -1,4 +1,4 @@
-const { test, expect } = require('@playwright/test');
+import { expect, test } from '@playwright/test';
 const home_url = process.env.HOME_URL;
 
 test("GetHelp Support", async ({ page }) => {

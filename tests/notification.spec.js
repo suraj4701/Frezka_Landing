@@ -1,5 +1,5 @@
-const { test, expect } = require('@playwright/test');
-const { TrustpilotVerify, EnvantoVerify, AdminPanelVerify, EnvantoFrezkaVerify, BookcallVerify } = require('./common');
+import { expect, test } from '@playwright/test';
+import { AdminPanelVerify, BookcallVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
 const home_url = process.env.HOME_URL;
 
 test("Notification Trustpilot link verify", async ({ page }) => {
