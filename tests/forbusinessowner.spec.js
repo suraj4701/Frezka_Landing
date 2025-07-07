@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const { TrustpilotVerify } = require('./common');
+const { TrustpilotVerify, BookcallVerify } = require('./common');
 const home_url = process.env.HOME_URL;
 
 test("Trustpilot link verify", async ({ page }) => {
@@ -8,6 +8,15 @@ test("Trustpilot link verify", async ({ page }) => {
     await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
     const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
     await TrustpilotVerify(page, trustpilotLinkLocator);
+})
+
+test("Book a Quick call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.waitForTimeout(2000)
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
+    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[2]/a[1]").click()
+    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await BookcallVerify(page, userappplaystoreLinkLocator);
 })
 
 test("Features", async ({ page }) => {

@@ -38,6 +38,21 @@ test("Admin Panel link verify", async ({ page }) => {
     await AdminPanelVerify(page, adminpanelLinkLocator);
 })
 
+test("Home Book a Quick call", async ({ page }) => {
+    await page.goto(home_url);
+    await page.waitForTimeout(2000)
+    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+    await BookcallVerify(page, userappplaystoreLinkLocator);
+})
+
+test("Home Book a Quick call 2", async ({ page }) => {
+    await page.goto(home_url);
+    await page.waitForTimeout(2000)
+    const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[1]");
+    await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
+    await BookcallVerify(page, userappplaystoreLinkLocator);
+})
+
 test("Admin Panel link verify 2", async ({ page }) => {
     await page.goto(home_url);
     await page.waitForTimeout(2000)
@@ -60,6 +75,14 @@ test("User App playstore link verify 2", async ({ page }) => {
     const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
     await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
     await UserappPlaystore(page, userappplaystoreLinkLocator);
+})
+
+test("Home Book a Quick call 3", async ({ page }) => {
+    await page.goto(home_url);
+    await page.waitForTimeout(2000)
+    const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[7]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[1]");
+    await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
+    await BookcallVerify(page, userappplaystoreLinkLocator);
 })
 
 test("learn button verify", async ({ page }) => {
