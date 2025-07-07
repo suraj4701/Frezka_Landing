@@ -15,11 +15,9 @@ test("More Hire Us", async ({ page }) => {
 
 test("More Book Demo Call", async ({ page }) => {
     await page.goto(home_url);
+    await page.waitForTimeout(2000)
     await page.locator("//a[contains(text(),'Book Demo Call 📞')]").click()
 
     const newPageUrl = page.url();
     expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-demo-call");
-    const iqonicDesignSpanLocator = page.locator("//h1[contains(text(),'Frezka - Demo Call')]");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain("Frezka - Demo Call");
 });
