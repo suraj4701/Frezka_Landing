@@ -4,6 +4,7 @@ const home_url = process.env.HOME_URL;
 
 test("pricing Buy now", async ({ page }) => {
     await page.goto(home_url);
+    await page.waitForTimeout(2000)
     await page.locator("//li[@id='menu-item-1792']").click()
     await page.waitForURL("https://frezka.iqonic.design/pricing/");
     const PageUrl = page.url();
@@ -15,6 +16,7 @@ test("pricing Buy now", async ({ page }) => {
 
 test("pricing buy service", async ({ page }) => {
     await page.goto(home_url);
+    await page.waitForTimeout(2000)
     await page.locator("//li[@id='menu-item-1792']").click()
     await page.waitForURL("https://frezka.iqonic.design/pricing/");
     const PageUrl = page.url();
