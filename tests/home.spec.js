@@ -81,6 +81,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Business Owner Learn button verify", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const learnButtonLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[14]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/a[1]");
             await learnButtonLocator.scrollIntoViewIfNeeded();
             await learnButtonLocator.click();
@@ -165,6 +166,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Medical Spa Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Medical spa software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
