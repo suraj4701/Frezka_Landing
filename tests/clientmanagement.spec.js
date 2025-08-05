@@ -1,74 +1,45 @@
 import { expect, test } from '@playwright/test';
-import { AdminPanelVerify, BookcallVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
+import { AdminPanelVerify, BookcallVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
 const home_url = process.env.HOME_URL;
+const CLIENT_MANAGEMENT_URL = "https://frezka.iqonic.design/feature/client-management-system/";
 
-test("Client Management Trustpilot link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await TrustpilotVerify(page, trustpilotLinkLocator);
-})
+test.describe('Client Management System Page Tests', () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto(home_url);
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover();
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click();
+        expect(page.url()).toBe(CLIENT_MANAGEMENT_URL);
+    });
 
-test("Client Management Envanto Frezka link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
-    await EnvantoFrezkaVerify(page, trustpilotLinkLocator);
-})
+    test("Trustpilot link verify", async ({ page }) => {
+        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await TrustpilotVerify(page, trustpilotLinkLocator);
+    });
 
-test("Client Management Admin Panel link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const adminpanelLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
-    await AdminPanelVerify(page, adminpanelLinkLocator);
-})
+    test("Envanto Frezka link verify", async ({ page }) => {
+        const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
+        await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
+    });
 
-test("Client Management Envanto link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
-    await EnvantoVerify(page, trustpilotLinkLocator);
-})
+    test("Admin Panel link verify", async ({ page }) => {
+        const adminpanelLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+        await AdminPanelVerify(page, adminpanelLinkLocator);
+    });
 
-test("Client Management Book a Quick call", async ({ page }) => {
-    await page.goto(home_url);
-    await page.waitForTimeout(2000)
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
-    await BookcallVerify(page, userappplaystoreLinkLocator);
-})
+    test("Envanto link verify", async ({ page }) => {
+        const envantoLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
+        await EnvantoVerify(page, envantoLinkLocator);
+    });
 
-test("Client Management client pagee", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[2]/ul[1]/li[5]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/feature/client-management-system/");
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'appointments and bookings')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    test("Book a Quick call", async ({ page }) => {
+        const bookcallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        await BookcallVerify(page, bookcallLinkLocator);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
-    const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Simplify Your Salon');
-})
+    test("Appointments and bookings link", async ({ page }) => {
+        const appointmentsLinkLocator = page.locator("//a[contains(text(),'appointments and bookings')]");
+        await appointmentsLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/";
+        await CommonLinkVerify(page, appointmentsLinkLocator, expectedLink);
+    });
+});

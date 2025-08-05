@@ -103,8 +103,19 @@ const BuyServiceVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-saas-with-laravel-backend/");
+    expect(newPageUrl).toBe("https://service.iqonic.design/services/frezka-flutter-app-with-laravel-backend/");
     return newPage;
 }
 
-module.exports = { TrustpilotVerify, EnvantoVerify, UserappPlaystore, UserappAppstore, EnvantoFrezkaVerify, AdminPanelVerify, BookcallVerify, BuyServiceVerify };
+const CommonLinkVerify = async (page, locator, link) => {
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        locator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toBe(link);
+    return newPage;
+}
+
+module.exports = { TrustpilotVerify, EnvantoVerify, UserappPlaystore, UserappAppstore, EnvantoFrezkaVerify, AdminPanelVerify, BookcallVerify, BuyServiceVerify, CommonLinkVerify };

@@ -1,88 +1,52 @@
 import { expect, test } from '@playwright/test';
-import { AdminPanelVerify, BookcallVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
+import { AdminPanelVerify, BookcallVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
 const home_url = process.env.HOME_URL;
+const ADMIN_PANEL_PRODUCT_URL = "https://frezka.iqonic.design/product/laravel-admin-panel/";
 
-test("AdminPanel Trustpilot link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await TrustpilotVerify(page, trustpilotLinkLocator);
-})
+test.describe('Admin Panel Product Page Tests', () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto(home_url);
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover();
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click();
+        expect(page.url()).toBe(ADMIN_PANEL_PRODUCT_URL);
+    });
 
-test("AdminPanel Envanto link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
-    await EnvantoVerify(page, trustpilotLinkLocator);
-})
+    test("Trustpilot link verify", async ({ page }) => {
+        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await TrustpilotVerify(page, trustpilotLinkLocator);
+    });
 
-test("AdminPanel Admin Panel link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const adminpanelLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
-    await AdminPanelVerify(page, adminpanelLinkLocator);
-})
+    test("Envanto link verify", async ({ page }) => {
+        const envantoLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
+        await EnvantoVerify(page, envantoLinkLocator);
+    });
 
-test("AdminPanel Envanto Frezka link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
-    await EnvantoFrezkaVerify(page, trustpilotLinkLocator);
-})
+    test("Admin Panel link verify", async ({ page }) => {
+        const adminpanelLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
+        await AdminPanelVerify(page, adminpanelLinkLocator);
+    });
 
-test("AdminPanel Book a Quick call", async ({ page }) => {
-    await page.goto(home_url);
-    await page.waitForTimeout(2000)
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
-    await BookcallVerify(page, userappplaystoreLinkLocator);
-})
+    test("Envanto Frezka link verify", async ({ page }) => {
+        const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+        await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
+    });
 
-test("AdminPanel visual analytics", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'visual analytics')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    test("Book a Quick call", async ({ page }) => {
+        const bookcallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        await BookcallVerify(page, bookcallLinkLocator);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka/login");
-})
+    test("Visual analytics", async ({ page }) => {
+        const visualAnalyticsLinkLocator = page.locator("//a[contains(text(),'visual analytics')]");
+        await visualAnalyticsLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://apps.iqonic.design/frezka/login";
+        await CommonLinkVerify(page, visualAnalyticsLinkLocator, expectedLink);
+    });
 
-test("AdminPanel scheduling and management", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'scheduling and management')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
-})
+    test("Scheduling and management", async ({ page }) => {
+        const schedulingLinkLocator = page.locator("//a[contains(text(),'scheduling and management')]");
+        await schedulingLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/";
+        await CommonLinkVerify(page, schedulingLinkLocator, expectedLink);
+    });
+});

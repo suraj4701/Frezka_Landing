@@ -1,110 +1,64 @@
 import { expect, test } from '@playwright/test';
-import { BookcallVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore } from './common';
+import { BookcallVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore } from './common';
 const home_url = process.env.HOME_URL;
+const APP_PRODUCT_URL = "https://frezka.iqonic.design/product/salon-and-spa-flutter-app/";
 
-test("App Trustpilot link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await TrustpilotVerify(page, trustpilotLinkLocator);
-})
+test.describe('App Product Page Tests', () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto(home_url);
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover();
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click();
+        expect(page.url()).toBe(APP_PRODUCT_URL);
+    });
 
-test("App Envanto link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
-    await EnvantoVerify(page, trustpilotLinkLocator);
-})
+    test("Trustpilot link verify", async ({ page }) => {
+        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await TrustpilotVerify(page, trustpilotLinkLocator);
+    });
 
-test("App playstore link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
-    await UserappPlaystore(page, userappplaystoreLinkLocator);
-})
+    test("Envanto link verify", async ({ page }) => {
+        const envantoLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
+        await EnvantoVerify(page, envantoLinkLocator);
+    });
 
-test("App Envanto Frezka link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
-    await EnvantoFrezkaVerify(page, trustpilotLinkLocator);
-})
+    test("Playstore link verify", async ({ page }) => {
+        const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
+        await UserappPlaystore(page, userappplaystoreLinkLocator);
+    });
 
-test("App Book a Quick call", async ({ page }) => {
-    await page.goto(home_url);
-    await page.waitForTimeout(2000)
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
-    await BookcallVerify(page, userappplaystoreLinkLocator);
-})
+    test("Envanto Frezka link verify", async ({ page }) => {
+        const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+        await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
+    });
 
-test("App booking appointments", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'booking appointments')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    test("Book a Quick call", async ({ page }) => {
+        const bookcallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        await BookcallVerify(page, bookcallLinkLocator);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
-})
+    test("Booking appointments", async ({ page }) => {
+        const bookingAppointmentsLinkLocator = page.locator("//a[contains(text(),'booking appointments')]");
+        await bookingAppointmentsLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/";
+        await CommonLinkVerify(page, bookingAppointmentsLinkLocator, expectedLink);
+    });
 
-test("App payment methods", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'payment methods')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
+    test("Payment methods", async ({ page }) => {
+        const paymentMethodsLinkLocator = page.locator("//a[contains(text(),'payment methods')]");
+        await paymentMethodsLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://apps.iqonic.design/frezka/login#/payment-method";
+        await CommonLinkVerify(page, paymentMethodsLinkLocator, expectedLink);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka/login#/payment-method");
-})
+    test("Playstore link verify (bottom section)", async ({ page }) => {
+        const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
+        await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
+        await UserappPlaystore(page, userappplaystoreLinkLocator);
+    });
 
-test("App playstore link verify2", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
-    await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
-    await UserappPlaystore(page, userappplaystoreLinkLocator);
-})
-
-test("App Appstore link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click()
-    const PageUrl = page.url();
-    expect(PageUrl).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
-    const userappAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await userappAppstoreLinkLocator.scrollIntoViewIfNeeded();
-    await UserappAppstore(page, userappAppstoreLinkLocator);
-})
+    test("Appstore link verify", async ({ page }) => {
+        const userappAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await userappAppstoreLinkLocator.scrollIntoViewIfNeeded();
+        await UserappAppstore(page, userappAppstoreLinkLocator);
+    });
+});

@@ -1,41 +1,28 @@
-import { expect, test } from '@playwright/test';
+import { test } from '@playwright/test';
+import { CommonLinkVerify } from './common';
 const home_url = process.env.HOME_URL;
 
-test("GetHelp Support", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
-    const support = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[2]/a[1]")
+test.describe('Get Help Menu Links Verification', () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto(home_url);
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover();
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        support.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.desky.support/");
-})
+    test("Support link verify", async ({ page }) => {
+        const supportLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[2]/a[1]");
+        const expectedLink = "https://iqonic.desky.support/";
+        await CommonLinkVerify(page, supportLinkLocator, expectedLink);
+    });
 
-test("GetHelp Blog", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
-    const blog = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[3]/a[1]")
+    test("Blog link verify", async ({ page }) => {
+        const blogLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[3]/a[1]");
+        const expectedLink = "https://iqonic.design/blog-category/frezka/";
+        await CommonLinkVerify(page, blogLinkLocator, expectedLink);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        blog.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.design/blog-category/frezka/");
-})
-
-test("GetHelp Documentation", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover()
-    const blog = await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[1]/a[1]")
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        blog.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://apps.iqonic.design/documentation/frezka-doc/build/");
-})
+    test("Documentation link verify", async ({ page }) => {
+        const documentationLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[1]/a[1]");
+        const expectedLink = "https://apps.iqonic.design/documentation/frezka-doc/build/";
+        await CommonLinkVerify(page, documentationLinkLocator, expectedLink);
+    });
+});

@@ -1,74 +1,49 @@
 import { expect, test } from '@playwright/test';
-import { BookcallVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore } from './common';
+import { BookcallVerify, CommonLinkVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore } from './common';
 const home_url = process.env.HOME_URL;
+const For_Developers_URL = "https://frezka.iqonic.design/salon-and-spa-software-for-developers/";
 
-test("Trustpilot link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await TrustpilotVerify(page, trustpilotLinkLocator);
-})
+test.describe('For Developers Feature Page Tests', () => {
+    test.beforeEach(async ({ page }) => {
+        await page.goto(home_url);
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover();
+        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click();
+        expect(page.url()).toBe(For_Developers_URL);
+    });
 
-test("Book a Quick call", async ({ page }) => {
-    await page.goto(home_url);
-    await page.waitForTimeout(2000)
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const userappplaystoreLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
-    await BookcallVerify(page, userappplaystoreLinkLocator);
-})
+    test("Trustpilot link verify", async ({ page }) => {
+        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await TrustpilotVerify(page, trustpilotLinkLocator);
+    });
 
-test("Set for features", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const pagelocator = page.locator("//a[contains(text(),'set of features')]");
-    await pagelocator.scrollIntoViewIfNeeded();
+    test("Book a Quick call link verify", async ({ page }) => {
+        const bookcallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        await BookcallVerify(page, bookcallLinkLocator);
+    });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        pagelocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
-    const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/h2[1]");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Simplify Your Salon');
-})
+    test("Set of features link verify", async ({ page }) => {
+        const setOfFeaturesLinkLocator = page.locator("//a[contains(text(),'set of features')]");
+        await setOfFeaturesLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/";
+        await CommonLinkVerify(page, setOfFeaturesLinkLocator, expectedLink);
+    });
 
-test("User App playstore link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const userappplaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-    await userappplaystoreLinkLocator.scrollIntoViewIfNeeded();
-    await UserappPlaystore(page, userappplaystoreLinkLocator);
-})
+    test("User App Playstore link verify", async ({ page }) => {
+        const userAppPlaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        await userAppPlaystoreLinkLocator.scrollIntoViewIfNeeded();
+        await UserappPlaystore(page, userAppPlaystoreLinkLocator);
+    });
 
-test("User App Appstore link verify", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const userappAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
-    await userappAppstoreLinkLocator.scrollIntoViewIfNeeded();
-    await UserappAppstore(page, userappAppstoreLinkLocator);
-})
+    test("User App Appstore link verify", async ({ page }) => {
+        const userAppAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
+        await userAppAppstoreLinkLocator.scrollIntoViewIfNeeded();
+        await UserappAppstore(page, userAppAppstoreLinkLocator);
+    });
 
-test("Custom Development Work", async ({ page }) => {
-    await page.goto(home_url);
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/a[1]").hover()
-    await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]").click()
-    const envantofrezkaLinkLocator = page.locator("//a[contains(text(),'custom development work')]");
-    await envantofrezkaLinkLocator.scrollIntoViewIfNeeded();
-
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        envantofrezkaLinkLocator.click()
-    ])
-    const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://iqonic.tech/");
-    const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'Delivered Faster and Smart')]");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Custom Tech Solutions,  Delivered Faster and Smarter');
-})
+    test("Custom Development Work link verify", async ({ page }) => {
+        const customDevWorkLinkLocator = page.locator("//a[contains(text(),'custom development work')]");
+        await customDevWorkLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://iqonic.tech/";
+        await CommonLinkVerify(page, customDevWorkLinkLocator, expectedLink);
+    });
+});
