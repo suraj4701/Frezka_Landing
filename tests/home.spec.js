@@ -175,6 +175,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Software for spas link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Software for spas')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -183,6 +184,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Gym management software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Gym management software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -217,6 +219,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Massage Salon Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Massage Salon Software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -225,6 +228,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Personal Trainer Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Personal trainer software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
