@@ -131,6 +131,7 @@ test.describe('Homepage General Verification', () => {
 
     test.describe('Footer Navigation Links', () => {
         test("Salon Booking Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Salon booking software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -150,6 +151,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Spa Scheduling Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Spa scheduling software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -158,6 +160,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Hair Salon Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Hair salon software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -211,6 +214,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Barbershop Software link verify (Footer)", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//span[contains(text(),'Barbershop software')]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
@@ -271,6 +275,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Footer Roadmap link verify", async ({ page }) => {
+            await page.waitForTimeout(2000)
             const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[3]/a[1]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
