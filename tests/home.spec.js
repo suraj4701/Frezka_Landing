@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { AdminPanelVerify, BookcallVerify, BuyServiceVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore } from './common';
+import { AdminPanelVerify, BookcallVerify, BuyServiceVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, UserappAppstore, UserappPlaystore, WebsiteVerify } from './common';
 const home_url = process.env.HOME_URL;
 
 test.describe('Homepage General Verification', () => {
@@ -25,8 +25,8 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("User App Playstore link verify (Hero Section)", async ({ page }) => {
-            const userAppPlaystoreLinkLocator = page.locator("//a[normalize-space()='User App']");
-            await UserappPlaystore(page, userAppPlaystoreLinkLocator);
+            const userAppPlaystoreLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='User Website']");
+            await WebsiteVerify(page, userAppPlaystoreLinkLocator);
         });
 
         test("Admin Panel link verify (Hero Section)", async ({ page }) => {
@@ -47,33 +47,39 @@ test.describe('Homepage General Verification', () => {
             await BookcallVerify(page, bookCallLinkLocator);
         });
 
+        test("Website link verify", async ({ page }) => {
+            const adminPanelLinkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-39e5017 elementor-align-left elementor-widget__width-inherit elementor-widget elementor-widget-elementskit-button')]//a[contains(@class,'whitespace--normal')][normalize-space()='View Demo']");
+            await adminPanelLinkLocator.scrollIntoViewIfNeeded();
+            await WebsiteVerify(page, adminPanelLinkLocator);
+        });
+
         test("Admin Panel link verify (Section 2 - View Demo)", async ({ page }) => {
-            const adminPanelLinkLocator = page.locator("//a[normalize-space()='View Demo']");
+            const adminPanelLinkLocator = page.locator("//a[contains(@href,'https://apps.iqonic.design/frezka/admin/login')][normalize-space()='View Demo']");
             await adminPanelLinkLocator.scrollIntoViewIfNeeded();
             await AdminPanelVerify(page, adminPanelLinkLocator);
         });
 
         test("User App Appstore link verify (Mid-page)", async ({ page }) => {
-            const userAppAppstoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
+            const userAppAppstoreLinkLocator = page.locator("(//img[@class='attachment-full size-full wp-image-250'])[1]");
             await userAppAppstoreLinkLocator.scrollIntoViewIfNeeded();
             await UserappAppstore(page, userAppAppstoreLinkLocator);
         });
 
         test("User App Playstore link verify (Mid-page)", async ({ page }) => {
-            const userAppPlaystoreLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[6]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/img[1]");
+            const userAppPlaystoreLinkLocator = page.locator("(//img[@class='attachment-full size-full wp-image-249'])[1]");
             await userAppPlaystoreLinkLocator.scrollIntoViewIfNeeded();
             await UserappPlaystore(page, userAppPlaystoreLinkLocator);
         });
 
         test("Book a Quick call link verify (Section 3)", async ({ page }) => {
-            const bookCallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[7]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[1]");
+            const bookCallLinkLocator = page.locator("//a[contains(text(),'Not sure what you need? Let’s walk through it.')]");
             await bookCallLinkLocator.scrollIntoViewIfNeeded();
             await BookcallVerify(page, bookCallLinkLocator);
         });
 
         test("Learn button verify (Online Appointment Scheduling)", async ({ page }) => {
             await page.waitForTimeout(2000)
-            const learnButtonLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[9]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+            const learnButtonLocator = page.locator("//a[contains(@href,'https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/')][normalize-space()='Learn More']");
             await learnButtonLocator.scrollIntoViewIfNeeded();
             await learnButtonLocator.click();
             await page.waitForURL("https://frezka.iqonic.design/feature/online-appointment-booking-and-scheduling/");
@@ -82,7 +88,7 @@ test.describe('Homepage General Verification', () => {
 
         test("Business Owner Learn button verify", async ({ page }) => {
             await page.waitForTimeout(2000)
-            const learnButtonLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[14]/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/a[1]");
+            const learnButtonLocator = page.locator("//a[contains(@href,'https://frezka.iqonic.design/for-business-owners/')]");
             await learnButtonLocator.scrollIntoViewIfNeeded();
             await learnButtonLocator.click();
             await page.waitForURL("https://frezka.iqonic.design/spa-and-salon-software-for-business-owners/");
@@ -91,7 +97,7 @@ test.describe('Homepage General Verification', () => {
 
         test("For Developers Learn button verify", async ({ page }) => {
             await page.waitForTimeout(2000)
-            const learnButtonLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[14]/div[1]/div[1]/div[2]/div[3]/div[2]/div[1]/div[1]/div[1]/a[1]");
+            const learnButtonLocator = page.locator("//a[contains(@href,'https://frezka.iqonic.design/for-developers/')]");
             await learnButtonLocator.scrollIntoViewIfNeeded();
             await learnButtonLocator.click();
             await page.waitForURL("https://frezka.iqonic.design/salon-and-spa-software-for-developers/");
@@ -99,19 +105,19 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Book Demo Call link verify (Mid-page)", async ({ page }) => {
-            const bookCallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[15]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+            const bookCallLinkLocator = page.locator("//a[normalize-space()='Talk to a Product Expert']");
             await bookCallLinkLocator.scrollIntoViewIfNeeded();
             await BookcallVerify(page, bookCallLinkLocator);
         });
 
         test("Envanto Frezka link verify (Section 1)", async ({ page }) => {
-            const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[16]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/a[1]");
+            const envantoFrezkaLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='Buy Now']");
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
             await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
         });
 
         test("Envanto Frezka link verify (Section 2)", async ({ page }) => {
-            const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[17]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]");
+            const envantoFrezkaLinkLocator = page.locator("//a[contains(@class,'ha-comparison-table__btns-item--btn elementor-repeater-item-6734a01')]");
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
             await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
         });
@@ -123,7 +129,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Envanto Frezka link verify (Section 3)", async ({ page }) => {
-            const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[18]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
+            const envantoFrezkaLinkLocator = page.locator("//a[normalize-space()='Buy Frezka']");
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
             await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
         });
@@ -241,7 +247,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Footer Admin Panel link verify", async ({ page }) => {
-            const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[1]/a[1]/span[1]");
+            const linkLocator = page.locator("//body[1]/div[2]/footer[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
             await page.waitForURL("https://frezka.iqonic.design/product/laravel-admin-panel/");
@@ -251,7 +257,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Footer Mobile App link verify", async ({ page }) => {
-            const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]/span[1]");
+            const linkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-1bdd564 e-con-full e-flex e-con e-child')]//li[1]");
             await linkLocator.scrollIntoViewIfNeeded();
             await linkLocator.click();
             await page.waitForURL("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
@@ -260,10 +266,20 @@ test.describe('Homepage General Verification', () => {
             expect(await headingLocator.textContent()).toContain("Mobile App");
         });
 
-        test("Footer Docs link verify", async ({ page }) => {
-            const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[1]/a[1]");
+        test("Footer Website link verify", async ({ page }) => {
+            const linkLocator = page.locator("//div[@class='elementor-element elementor-element-1bdd564 e-con-full e-flex e-con e-child']//li[3]");
             await linkLocator.scrollIntoViewIfNeeded();
-            const expectedLink = "https://apps.iqonic.design/documentation/frezka-doc/build/";
+            await linkLocator.click();
+            await page.waitForURL("https://frezka.iqonic.design/product/salon-and-spa-management-software/");
+            expect(page.url()).toBe("https://frezka.iqonic.design/product/salon-and-spa-management-software/");
+            const headingLocator = page.locator("//h6[normalize-space()='user website']");
+            expect(await headingLocator.textContent()).toContain("user website");
+        });
+
+        test("Footer Docs link verify", async ({ page }) => {
+            const linkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-7165a30 e-con-full e-flex e-con e-child')]//li[1]");
+            await linkLocator.scrollIntoViewIfNeeded();
+            const expectedLink = "https://documentation.iqonic.design/frezka/";
             await CommonLinkVerify(page, linkLocator, expectedLink);
         });
 

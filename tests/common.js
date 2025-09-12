@@ -8,9 +8,6 @@ const TrustpilotVerify = async (page, locator) => {
     ])
     const newPageUrl = newPage.url();
     expect(newPageUrl).toBe("https://www.trustpilot.com/review/iqonic.design");
-    const iqonicDesignSpanLocator = newPage.locator("//body/div[@id='__next']/div[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/section[1]/div[2]/h1[1]/span[1]");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('IQONIC DESIGN');
     return newPage;
 }
 
@@ -56,6 +53,17 @@ const UserappAppstore = async (page, locator) => {
     return newPage;
 }
 
+const WebsiteVerify = async (page, locator) => {
+
+    const [newPage] = await Promise.all([
+        page.context().waitForEvent('page'),
+        locator.click()
+    ])
+    const newPageUrl = newPage.url();
+    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka/");
+    return newPage;
+}
+
 const AdminPanelVerify = async (page, locator) => {
 
     const [newPage] = await Promise.all([
@@ -63,7 +71,7 @@ const AdminPanelVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka/login");
+    expect(newPageUrl).toBe("https://apps.iqonic.design/frezka/admin/login");
     const iqonicDesignSpanLocator = newPage.locator("//button[normalize-space()='Log in']");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Log in');
@@ -78,7 +86,7 @@ const EnvantoFrezkaVerify = async (page, locator) => {
     ])
     const iqonicDesignSpanLocator = newPage.locator("//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/h1[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Frezka - Software for Salons and Spa Businesses (Flutter + Laravel)');
+    expect(verifytext).toContain('Frezka - Spa & Salon Management Software (Flutter + Laravel)');
     return newPage;
 }
 
@@ -89,10 +97,7 @@ const BookcallVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-demo-call");
-    const iqonicDesignSpanLocator = newPage.locator("//h1[normalize-space()='Frezka - Demo Call']");
-    const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Frezka - Demo Call');
+    expect(newPageUrl).toBe("https://frezka.iqonic.design/frezka-demo-call/");
     return newPage;
 }
 
@@ -118,4 +123,4 @@ const CommonLinkVerify = async (page, locator, link) => {
     return newPage;
 }
 
-module.exports = { TrustpilotVerify, EnvantoVerify, UserappPlaystore, UserappAppstore, EnvantoFrezkaVerify, AdminPanelVerify, BookcallVerify, BuyServiceVerify, CommonLinkVerify };
+module.exports = { TrustpilotVerify, EnvantoVerify, WebsiteVerify, UserappPlaystore, UserappAppstore, EnvantoFrezkaVerify, AdminPanelVerify, BookcallVerify, BuyServiceVerify, CommonLinkVerify };

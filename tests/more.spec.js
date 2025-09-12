@@ -16,7 +16,7 @@ test.describe('More Section Links Verification', () => {
     test("Book Demo Call link verify", async ({ page }) => {
         await page.locator("li[id='menu-item-4746'] a[class='ct-menu-link']").click()
         const newPageUrl = page.url();
-        expect(newPageUrl).toBe("https://tidycal.com/iqonicdesign/frezka-demo-call");
+        expect(newPageUrl).toBe("https://frezka.iqonic.design/frezka-demo-call/");
     });
 
     test("Buy Now", async ({ page }) => {
