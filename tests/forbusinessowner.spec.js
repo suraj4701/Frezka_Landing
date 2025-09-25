@@ -12,24 +12,31 @@ test.describe('For Business Owners Page Tests', () => {
     });
 
     test("Trustpilot link verify", async ({ page }) => {
-        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]/img[1]");
+        const trustpilotLinkLocator = page.locator("//a[@href='https://www.trustpilot.com/review/iqonic.design']");
         await TrustpilotVerify(page, trustpilotLinkLocator);
     });
 
     test("Book a Quick call link verify", async ({ page }) => {
-        const bookcallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        const bookcallLinkLocator = page.locator("//a[normalize-space()='Book a quick call.']");
         await BookcallVerify(page, bookcallLinkLocator);
     });
 
+    test("Support Team link verify", async ({ page }) => {
+        const featuresLinkLocator = page.locator("//a[normalize-space()='support team']");
+        await featuresLinkLocator.scrollIntoViewIfNeeded();
+        const expectedLink = "https://iqonic.desky.support/";
+        await CommonLinkVerify(page, featuresLinkLocator, expectedLink);
+    });
+
     test("Features link verify", async ({ page }) => {
-        const featuresLinkLocator = page.locator("//a[contains(text(),'features')]");
+        const featuresLinkLocator = page.locator("//a[normalize-space()='features']");
         await featuresLinkLocator.scrollIntoViewIfNeeded();
         const expectedLink = "https://frezka.iqonic.design/feature/services-and-packages/";
         await CommonLinkVerify(page, featuresLinkLocator, expectedLink);
     });
 
     test("Custom Development Work link verify", async ({ page }) => {
-        const customDevLinkLocator = page.locator("//a[contains(text(),'custom development work')]");
+        const customDevLinkLocator = page.locator("//a[normalize-space()='custom development work']");
         await customDevLinkLocator.scrollIntoViewIfNeeded();
         const expectedLink = "https://service.iqonic.design/";
         await CommonLinkVerify(page, customDevLinkLocator, expectedLink);

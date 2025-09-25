@@ -97,7 +97,9 @@ const BookcallVerify = async (page, locator) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe("https://frezka.iqonic.design/frezka-demo-call/");
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe("https://frezka.iqonic.design/frezka-demo-call/");
     return newPage;
 }
 
