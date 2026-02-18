@@ -8,6 +8,12 @@ test.describe('Get Help Menu Links Verification', () => {
         await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/a[1]").hover();
     });
 
+    test("Documentation link verify", async ({ page }) => {
+        const documentationLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[1]/a[1]");
+        const expectedLink = "https://documentation.iqonic.design/frezka/";
+        await CommonLinkVerify(page, documentationLinkLocator, expectedLink);
+    });
+
     test("Support link verify", async ({ page }) => {
         const supportLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[2]/a[1]");
         const expectedLink = "https://iqonic.desky.support/";
@@ -18,11 +24,5 @@ test.describe('Get Help Menu Links Verification', () => {
         const blogLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[3]/a[1]");
         const expectedLink = "https://iqonic.design/blog-category/frezka/";
         await CommonLinkVerify(page, blogLinkLocator, expectedLink);
-    });
-
-    test("Documentation link verify", async ({ page }) => {
-        const documentationLinkLocator = page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[5]/ul[1]/li[1]/a[1]");
-        const expectedLink = "https://apps.iqonic.design/documentation/frezka-doc/build/";
-        await CommonLinkVerify(page, documentationLinkLocator, expectedLink);
     });
 });
