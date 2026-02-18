@@ -7,7 +7,7 @@ test.describe('App Product Page Tests', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(home_url);
         await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover();
-        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[2]/a[1]").click();
+        await page.locator("//li[@id='menu-item-1789']//a[@class='ct-menu-link'][normalize-space()='App']").click();
         expect(page.url()).toBe(APP_PRODUCT_URL);
     });
 
@@ -46,7 +46,7 @@ test.describe('App Product Page Tests', () => {
     test("Payment methods", async ({ page }) => {
         const paymentMethodsLinkLocator = page.locator("//a[contains(text(),'payment methods')]");
         await paymentMethodsLinkLocator.scrollIntoViewIfNeeded();
-        const expectedLink = "https://apps.iqonic.design/frezka/login#/payment-method";
+        const expectedLink = "https://apps.iqonic.design/frezka/admin/login";
         await CommonLinkVerify(page, paymentMethodsLinkLocator, expectedLink);
     });
 

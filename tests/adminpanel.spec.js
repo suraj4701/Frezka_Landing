@@ -7,7 +7,7 @@ test.describe('Admin Panel Product Page Tests', () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(home_url);
         await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]").hover();
-        await page.locator("//header/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/ul[1]/li[1]/a[1]").click();
+        await page.locator("//li[@id='menu-item-1788']//a[@class='ct-menu-link'][normalize-space()='Admin Panel']").click();
         expect(page.url()).toBe(ADMIN_PANEL_PRODUCT_URL);
     });
 
@@ -39,7 +39,7 @@ test.describe('Admin Panel Product Page Tests', () => {
     test("Visual analytics", async ({ page }) => {
         const visualAnalyticsLinkLocator = page.locator("//a[contains(text(),'visual analytics')]");
         await visualAnalyticsLinkLocator.scrollIntoViewIfNeeded();
-        const expectedLink = "https://apps.iqonic.design/frezka/login";
+        const expectedLink = "https://apps.iqonic.design/frezka/admin/login";
         await CommonLinkVerify(page, visualAnalyticsLinkLocator, expectedLink);
     });
 
