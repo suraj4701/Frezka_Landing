@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { AdminPanelVerify, BookcallVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify } from './common';
+import { BookcallVerify, CommonLinkVerify, EnvantoFrezkaVerify, EnvantoVerify, TrustpilotVerify, WebsiteVerify } from './common';
 const home_url = process.env.HOME_URL;
 const MULTI_BRANCH_SUPPORT_URL = "https://frezka.iqonic.design/feature/multi-branch-support/";
 
@@ -11,33 +11,33 @@ test.describe('Multi Branch Support Page Tests', () => {
         expect(page.url()).toBe(MULTI_BRANCH_SUPPORT_URL);
     });
 
-    test("Trustpilot link verify", async ({ page }) => {
-        const trustpilotLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]");
-        await TrustpilotVerify(page, trustpilotLinkLocator);
-    });
-
     test("Envanto Frezka link verify", async ({ page }) => {
-        const envantoFrezkaLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]");
+        const envantoFrezkaLinkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-5b56233 elementor-align-left elementor-widget__width-auto elementor-widget elementor-widget-elementskit-button')]//a[contains(@class,'whitespace--normal')][normalize-space()='Buy Now']");
         await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
     });
 
-    test("Admin Panel link verify", async ({ page }) => {
-        const adminPanelLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]");
-        await AdminPanelVerify(page, adminPanelLinkLocator);
+    test("Website link verify", async ({ page }) => {
+        const adminPanelLinkLocator = page.locator("//a[normalize-space()='View Demo']");
+        await WebsiteVerify(page, adminPanelLinkLocator);
+    });
+
+    test("Trustpilot link verify", async ({ page }) => {
+        const trustpilotLinkLocator = page.locator("//img[contains(@class,'attachment-large size-large wp-image-155')]");
+        await TrustpilotVerify(page, trustpilotLinkLocator);
     });
 
     test("Envanto link verify", async ({ page }) => {
-        const envantoLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/a[1]/img[1]");
+        const envantoLinkLocator = page.locator("//img[@class='attachment-large size-large wp-image-856']");
         await EnvantoVerify(page, envantoLinkLocator);
     });
 
     test("Book a Quick call link verify", async ({ page }) => {
-        const bookCallLinkLocator = page.locator("//a[contains(text(),'Book a quick call.')]");
+        const bookCallLinkLocator = page.locator("//a[normalize-space()='Book a quick call.']");
         await BookcallVerify(page, bookCallLinkLocator);
     });
 
     test("Client Page ('service offerings') link verify", async ({ page }) => {
-        const serviceOfferingsLinkLocator = page.locator("//a[contains(text(),'service offerings')]");
+        const serviceOfferingsLinkLocator = page.locator("//a[normalize-space()='service offerings']");
         await serviceOfferingsLinkLocator.scrollIntoViewIfNeeded();
         const expectedLink = "https://frezka.iqonic.design/feature/services-and-packages/";
         await CommonLinkVerify(page, serviceOfferingsLinkLocator, expectedLink);
