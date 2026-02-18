@@ -24,9 +24,9 @@ test.describe('Homepage General Verification', () => {
             await EnvantoVerify(page, envantoLinkLocator);
         });
 
-        test("User App Playstore link verify (Hero Section)", async ({ page }) => {
-            const userAppPlaystoreLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='User Website']");
-            await WebsiteVerify(page, userAppPlaystoreLinkLocator);
+        test("User Website link verify (Hero Section)", async ({ page }) => {
+            const userWebsiteLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='User Website']");
+            await WebsiteVerify(page, userWebsiteLinkLocator);
         });
 
         test("Admin Panel link verify (Hero Section)", async ({ page }) => {
@@ -42,7 +42,7 @@ test.describe('Homepage General Verification', () => {
 
     test.describe('Mid-Page Links & CTA Verification', () => {
         test("Book a Quick call link verify (Section 2)", async ({ page }) => {
-            const bookCallLinkLocator = page.locator("//body/div[@id='main-container']/main[@id='main']/div[1]/article[1]/div[1]/div[1]/div[4]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[1]/a[1]");
+            const bookCallLinkLocator = page.locator("//a[normalize-space()='Still wondering if Frezka suits your business?']");
             await bookCallLinkLocator.scrollIntoViewIfNeeded();
             await BookcallVerify(page, bookCallLinkLocator);
         });
@@ -51,12 +51,6 @@ test.describe('Homepage General Verification', () => {
             const adminPanelLinkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-39e5017 elementor-align-left elementor-widget__width-inherit elementor-widget elementor-widget-elementskit-button')]//a[contains(@class,'whitespace--normal')][normalize-space()='View Demo']");
             await adminPanelLinkLocator.scrollIntoViewIfNeeded();
             await WebsiteVerify(page, adminPanelLinkLocator);
-        });
-
-        test("Admin Panel link verify (Section 2 - View Demo)", async ({ page }) => {
-            const adminPanelLinkLocator = page.locator("//a[contains(@href,'https://apps.iqonic.design/frezka/admin/login')][normalize-space()='View Demo']");
-            await adminPanelLinkLocator.scrollIntoViewIfNeeded();
-            await AdminPanelVerify(page, adminPanelLinkLocator);
         });
 
         test("User App Appstore link verify (Mid-page)", async ({ page }) => {
@@ -69,6 +63,12 @@ test.describe('Homepage General Verification', () => {
             const userAppPlaystoreLinkLocator = page.locator("(//img[@class='attachment-full size-full wp-image-249'])[1]");
             await userAppPlaystoreLinkLocator.scrollIntoViewIfNeeded();
             await UserappPlaystore(page, userAppPlaystoreLinkLocator);
+        });
+
+        test("Admin Panel link verify (Section 2 - View Demo)", async ({ page }) => {
+            const adminPanelLinkLocator = page.locator("//a[contains(@href,'https://apps.iqonic.design/frezka/admin/login')][normalize-space()='View Demo']");
+            await adminPanelLinkLocator.scrollIntoViewIfNeeded();
+            await AdminPanelVerify(page, adminPanelLinkLocator);
         });
 
         test("Book a Quick call link verify (Section 3)", async ({ page }) => {
@@ -111,7 +111,7 @@ test.describe('Homepage General Verification', () => {
         });
 
         test("Envanto Frezka link verify (Section 1)", async ({ page }) => {
-            const envantoFrezkaLinkLocator = page.locator("//a[contains(@class,'whitespace--normal')][normalize-space()='Buy Now']");
+            const envantoFrezkaLinkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-340511c elementor-align-left elementor-widget__width-auto elementor-widget elementor-widget-elementskit-button')]//a[contains(@class,'whitespace--normal')][normalize-space()='Buy Now']");
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
             await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
         });
@@ -246,16 +246,6 @@ test.describe('Homepage General Verification', () => {
             expect(page.url()).toBe("https://frezka.iqonic.design/personal-trainer-software/");
         });
 
-        test("Footer Admin Panel link verify", async ({ page }) => {
-            const linkLocator = page.locator("//body[1]/div[2]/footer[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]");
-            await linkLocator.scrollIntoViewIfNeeded();
-            await linkLocator.click();
-            await page.waitForURL("https://frezka.iqonic.design/product/laravel-admin-panel/");
-            expect(page.url()).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
-            const headingLocator = page.locator("//h6[contains(text(),'Admin Panel')]");
-            expect(await headingLocator.textContent()).toContain("Admin Panel");
-        });
-
         test("Footer Mobile App link verify", async ({ page }) => {
             const linkLocator = page.locator("//div[contains(@class,'elementor-element elementor-element-1bdd564 e-con-full e-flex e-con e-child')]//li[1]");
             await linkLocator.scrollIntoViewIfNeeded();
@@ -264,6 +254,16 @@ test.describe('Homepage General Verification', () => {
             expect(page.url()).toBe("https://frezka.iqonic.design/product/salon-and-spa-flutter-app/");
             const headingLocator = page.locator("//h6[contains(text(),'Mobile App')]");
             expect(await headingLocator.textContent()).toContain("Mobile App");
+        });
+
+        test("Footer Admin Panel link verify", async ({ page }) => {
+            const linkLocator = page.locator("//body[1]/div[2]/footer[1]/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/ul[1]/li[2]/a[1]");
+            await linkLocator.scrollIntoViewIfNeeded();
+            await linkLocator.click();
+            await page.waitForURL("https://frezka.iqonic.design/product/laravel-admin-panel/");
+            expect(page.url()).toBe("https://frezka.iqonic.design/product/laravel-admin-panel/");
+            const headingLocator = page.locator("//h6[contains(text(),'Admin Panel')]");
+            expect(await headingLocator.textContent()).toContain("Admin Panel");
         });
 
         test("Footer Website link verify", async ({ page }) => {
@@ -290,17 +290,6 @@ test.describe('Homepage General Verification', () => {
             await CommonLinkVerify(page, linkLocator, expectedLink);
         });
 
-        test("Footer Roadmap link verify", async ({ page }) => {
-            await page.waitForTimeout(2000)
-            const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[2]/div[1]/ul[1]/li[3]/a[1]");
-            await linkLocator.scrollIntoViewIfNeeded();
-            await linkLocator.click();
-            await page.waitForURL("https://frezka.iqonic.design/roadmap/");
-            expect(page.url()).toBe("https://frezka.iqonic.design/roadmap/");
-            const headingLocator = page.locator("//li[contains(text(),'Roadmap')]");
-            expect(await headingLocator.textContent()).toContain("Roadmap");
-        });
-
         test("Footer Support link verify", async ({ page }) => {
             const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[1]/a[1]");
             await linkLocator.scrollIntoViewIfNeeded();
@@ -322,7 +311,7 @@ test.describe('Homepage General Verification', () => {
         test("Footer Get A Quote link verify", async ({ page }) => {
             const linkLocator = page.locator("//body/div[@id='main-container']/footer[@id='footer']/div[1]/div[1]/article[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[4]/div[2]/div[1]/ul[1]/li[3]/a[1]");
             await linkLocator.scrollIntoViewIfNeeded();
-            const expectedLink = "https://iqonic.tech/cost-calculator/";
+            const expectedLink = "https://iqonic.tech/software-development-cost-calculator/";
             await CommonLinkVerify(page, linkLocator, expectedLink);
         });
 

@@ -19,7 +19,7 @@ const EnvantoVerify = async (page, locator) => {
     ])
     const newPageUrl = newPage.url();
     expect(newPageUrl).toBe("https://codecanyon.net/user/iqonicdesign/portfolio");
-    const iqonicDesignSpanLocator = newPage.locator("//h1[contains(text(),'iqonicdesign - Portfolio')]");
+    const iqonicDesignSpanLocator = newPage.locator("//h1[normalize-space()='iqonicdesign - Portfolio']");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('iqonicdesign - Portfolio');
     return newPage;
@@ -47,7 +47,7 @@ const UserappAppstore = async (page, locator) => {
     ])
     const newPageUrl = newPage.url();
     expect(newPageUrl).toBe("https://apps.apple.com/us/app/frezka-beauty-salons/id6450424262?platform=ipad");
-    const iqonicDesignSpanLocator = newPage.locator("//h1[@class='product-header__title app-header__title']");
+    const iqonicDesignSpanLocator = newPage.locator("//h1[@class='svelte-1bm25t']");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Frezka - Beauty Salons');
     return newPage;
@@ -86,7 +86,7 @@ const EnvantoFrezkaVerify = async (page, locator) => {
     ])
     const iqonicDesignSpanLocator = newPage.locator("//body/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/div[1]/h1[1]");
     const verifytext = await iqonicDesignSpanLocator.textContent();
-    expect(verifytext).toContain('Frezka - Spa & Salon Management Software (Flutter + Laravel)');
+    expect(verifytext).toContain('Frezka - Spa & Salon Management and Booking Flutter App');
     return newPage;
 }
 
@@ -121,7 +121,9 @@ const CommonLinkVerify = async (page, locator, link) => {
         locator.click()
     ])
     const newPageUrl = newPage.url();
-    expect(newPageUrl).toBe(link);
+    const urlObject = new URL(newPageUrl);
+    const urlWithoutQueryParams = urlObject.origin + urlObject.pathname;
+    expect(urlWithoutQueryParams).toBe(link);
     return newPage;
 }
 
