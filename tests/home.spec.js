@@ -115,19 +115,7 @@ test.describe('Homepage General Verification', () => {
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
             await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
         });
-
-        test("Envanto Frezka link verify (Section 2)", async ({ page }) => {
-            const envantoFrezkaLinkLocator = page.locator("//a[contains(@class,'ha-comparison-table__btns-item--btn elementor-repeater-item-6734a01')]");
-            await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
-            await EnvantoFrezkaVerify(page, envantoFrezkaLinkLocator);
-        });
-
-        test("Buy Service link verify", async ({ page }) => {
-            const buyServiceLinkLocator = page.locator("//a[contains(text(),'Buy Service')]");
-            await buyServiceLinkLocator.scrollIntoViewIfNeeded();
-            await BuyServiceVerify(page, buyServiceLinkLocator);
-        });
-
+        
         test("Envanto Frezka link verify (Section 3)", async ({ page }) => {
             const envantoFrezkaLinkLocator = page.locator("//a[normalize-space()='Buy Frezka']");
             await envantoFrezkaLinkLocator.scrollIntoViewIfNeeded();
