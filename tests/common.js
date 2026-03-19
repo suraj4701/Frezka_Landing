@@ -47,7 +47,7 @@ const UserappAppstore = async (page, locator) => {
     ])
     const newPageUrl = newPage.url();
     expect(newPageUrl).toBe("https://apps.apple.com/us/app/frezka-beauty-salons/id6450424262?platform=ipad");
-    const iqonicDesignSpanLocator = newPage.locator("//h1[@class='svelte-1bm25t']");
+    const iqonicDesignSpanLocator = newPage.locator("//h1[normalize-space()='Frezka - Beauty Salons']");
     const verifytext = await iqonicDesignSpanLocator.textContent();
     expect(verifytext).toContain('Frezka - Beauty Salons');
     return newPage;
